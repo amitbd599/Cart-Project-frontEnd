@@ -1,14 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { removeSession } from "../Helpers/SessionHelper";
 const AppNav = () => {
-
   const handleLogout = () => {
-    removeSession()
+    removeSession();
   };
   return (
     <div className="navbar fixed top-0  z-50 px-20 drop-shadow-lg bg-base-100">
       <div className="flex-1">
-        <img className="w-20" src="/images/logo.png" />
+        <Link to={"/"}>
+          <img className="w-20" src="/images/logo.png" />
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-2">

@@ -19,13 +19,15 @@ const LoginPage = () => {
     } else {
       login__Request__API(email, password).then((res) => {
         if (res) {
-          if (localStorage.getItem("guest-cart-item")?.length > 0) {
+          if (localStorage.getItem("guest-cart-item").length > 0) {
             AddToCart__Request__API(getEmail(), getGuestCart()).then((res) => {
               if (res) {
                 localStorage.removeItem("guest-cart-item");
                 navigate(`/cart-list`);
               }
             });
+          } else {
+            navigate(`/cart-list`);
           }
         }
       });

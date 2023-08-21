@@ -40,7 +40,7 @@ export const login__Request__API = async (email, password) => {
   };
 
   try {
-    const result = await axios.get(URL, postBody);
+    const result = await axios.post(URL, postBody);
 
     if (result.status === 200) {
       if (result.data["status"] === "success") {
@@ -58,6 +58,25 @@ export const login__Request__API = async (email, password) => {
     }
   } catch (e) {
     ErrorTost("Login Fail!-3");
+    return false;
+  }
+};
+
+//! ================== Get All Product API ===================
+export const GetAllProduct__Request__API = async () => {
+  let URL = BaseURL + "/get-all-products";
+
+  try {
+    const result = await axios.get(URL);
+
+    if (result.status === 200) {
+      return result.data;
+    } else {
+      ErrorTost("Something Went Wrong -1");
+      return false;
+    }
+  } catch (e) {
+    ErrorTost("Something Went Wrong -2");
     return false;
   }
 };

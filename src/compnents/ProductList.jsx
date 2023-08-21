@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import getProduct from "../utils/fetchProduct";
+
 import Loader from "./Loader";
+import { GetAllProduct__Request__API } from "../Api/Api";
 
 const ProductList = () => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    getProduct().then((data) => setProducts(data));
+    GetAllProduct__Request__API().then((res) => {
+      setProducts(res.data);
+    });
   }, []);
 
   return (
@@ -15,8 +18,8 @@ const ProductList = () => {
       {products === null ? (
         <Loader />
       ) : (
-        <div className="grid grid-cols-1 mt-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {products.map((product, index) => (
+        <div className="grid grid-cols-1 mt-2 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+          {products?.map((product, index) => (
             <Product key={index} product={product} />
           ))}
         </div>

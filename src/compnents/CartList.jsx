@@ -1,26 +1,30 @@
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import {
-  AddToCart__Request__API,
   AllCartList__Request__API,
   deleteCart__Request__API,
 } from "../Api/Api";
 import {
   convertPriceStringToNumber,
   getEmail,
-  getGuestCart,
+  getToken,
 } from "../Helpers/SessionHelper";
 import { SuccessTost } from "../Helpers/FormHelper";
+import { useNavigate } from "react-router-dom";
 
 const CartList = () => {
   const [CartItems, setCartItems] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    AllCartList__Request__API(getEmail()).then((res) => {
-      if (res) {
-        setCartItems(res.data);
-      }
-    });
+    if (getToken()) {
+      AllCartList__Request__API(getEmail()).then((res) => {
+        if (res) {
+          setCartItems(res.data);
+        }
+      });
+    } else {
+      navigate("/login");
+    }
   }, []);
 
   const handleRemoveCart = (productId) => {
@@ -66,7 +70,7 @@ const CartList = () => {
                     <div className="card-body">
                       <h6 className="text-black">{item?.cartList?.title}</h6>
                       <h3 className="text-xl font-bold text-gray-700">
-                        Price: Tk {"price"}
+                        Price: Tk {item?.cartList?.price}
                       </h3>
                       <div className="card-actions justify-end">
                         <button

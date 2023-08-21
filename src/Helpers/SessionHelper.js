@@ -8,6 +8,7 @@ class SessionHelper {
   setEmail(email) {
     localStorage.setItem("Email", email);
   }
+
   getEmail() {
     return localStorage.getItem("Email");
   }

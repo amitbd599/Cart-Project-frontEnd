@@ -8,7 +8,7 @@ const RegisterPage = () => {
     passwordRef = useRef();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleRegister = () => {
     let email = emailRef.value;
     let password = passwordRef.value;
     if (IsEmpty(email)) {
@@ -61,7 +61,7 @@ const RegisterPage = () => {
                 </div>
                 <button
                   className="btn rounded-lg w-full my-4 btn-primary"
-                  onClick={handleLogin}
+                  onClick={handleRegister}
                 >
                   Register
                 </button>
