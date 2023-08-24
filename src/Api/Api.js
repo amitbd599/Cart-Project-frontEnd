@@ -148,3 +148,44 @@ export const deleteCart__Request__API = async (id) => {
     return false;
   }
 };
+
+//! ================== Create Product API ====================
+export const createProduct__Request__API = async (
+  title,
+  short_des,
+  price,
+  discount,
+  discount_price,
+  image,
+  stock,
+  star,
+  remark
+) => {
+  let URL = BaseURL + "/create-product";
+  let TokenData = { headers: { Token: getToken() } };
+  let postBody = {
+    title,
+    short_des,
+    price,
+    discount,
+    discount_price,
+    image,
+    stock,
+    star,
+    remark,
+  };
+
+  try {
+    const result = await axios.post(URL, postBody, TokenData);
+    if (result.status === 200) {
+      SuccessTost("Product Create Success");
+      return true;
+    } else {
+      ErrorTost("Something Went Wrong -1");
+      return false;
+    }
+  } catch (e) {
+    ErrorTost("Something Went Wrong -2");
+    return false;
+  }
+};

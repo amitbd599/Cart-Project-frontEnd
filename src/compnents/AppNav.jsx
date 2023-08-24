@@ -12,7 +12,10 @@ const AppNav = () => {
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-2">
+        <ul className="menu menu-horizontal px-2 flex gap-3">
+          <li>
+            <NavLink to="/create-product"> Create Product</NavLink>
+          </li>
           <li>
             <NavLink to="/">Product</NavLink>
           </li>

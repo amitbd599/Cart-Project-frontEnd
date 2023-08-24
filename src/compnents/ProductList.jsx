@@ -9,7 +9,9 @@ const ProductList = () => {
 
   useEffect(() => {
     GetAllProduct__Request__API().then((res) => {
-      setProducts(res.data);
+      if (res) {
+        setProducts(res.data);
+      }
     });
   }, []);
 

@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 const CartList = () => {
   const [CartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     if (getToken()) {
       AllCartList__Request__API(getEmail()).then((res) => {
